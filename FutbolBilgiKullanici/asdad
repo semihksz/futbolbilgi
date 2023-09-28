@@ -1,0 +1,27 @@
+<?php
+            $deger = $db->query("SELECT * FROM krallar");
+            $deger->execute();
+            $krallar = $deger->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($krallar as $key => $kral) {
+                if ($kral['KralSezon'] == '2022 / 2023') { ?>
+                    <div class="col-lg-3 mb-5">
+                        <div class="card h-100 shadow border-0" style="max-width: 250px;">
+                            <?php
+                            if ($kral['KralKategori'] == 'Gol Kralı') { ?>
+                                <h6 class="card-title text-center fw-bold mt-3">Gol Kralı</h6>
+                                <a class="text-decoration-none link-dark stretched-link" href="takimlar.php?TakimId=<?= $kral['KralTakim'] ?>">
+                                    <img class="card-img-top p-3" src="../src/assets/images/logos/takimlar/<?= $kral['KralResim'] ?>" alt="<?= $kral['KralTakim'] ?>" />
+                                </a>
+                            <?php } elseif ($kral['KralKategori'] == 'Asist Kralı') { ?>
+                                <h6 class="card-title text-center fw-bold mt-3">Asist Kralı</h6>
+                                <a class="text-decoration-none link-dark stretched-link" href="takimlar.php?TakimId=<?= $kral['KralTakim'] ?>">
+                                    <img class="card-img-top p-3" src="../src/assets/images/logos/takimlar/<?= $kral['KralResim'] ?>" alt="<?= $kral['KralTakim'] ?>" />
+                                </a>
+                            <?php }
+
+                            ?>
+                        </div>
+                    </div>
+            <?php }
+            }
+            ?>
